@@ -26,8 +26,8 @@ declare namespace AnalyticsNode {
       nodeVersion: string;
       [key: string]: any;
     };
-    timestamp?: Date | undefined;
     messageId?: string | undefined;
+    timestamp?: Date | undefined;
   };
 
   interface Data {
@@ -54,7 +54,7 @@ declare namespace AnalyticsNode {
 
     /* The identify method lets you tie a user to their actions and record
        traits about them. */
-    identify(message: Identity & {
+    identify(message: Message & {
       traits?: any;
       timestamp?: Date | undefined;
       context?: any;
@@ -62,7 +62,7 @@ declare namespace AnalyticsNode {
     }, callback?: (err: Error) => void): Analytics;
 
     /* The track method lets you record the actions your users perform. */
-    track(message: Identity & {
+    track(message: Message & {
       event: string;
       properties?: any;
       timestamp?: Date | undefined;
@@ -72,20 +72,19 @@ declare namespace AnalyticsNode {
 
     /* The page method lets you record page views on your website, along with
        optional extra information about the page being viewed. */
-    page(message: Identity & {
+    page(message: Message & {
       category?: string | undefined;
       name?: string | undefined;
       properties?: any;
       timestamp?: Date | undefined;
       context?: any;
       integrations?: Integrations | undefined;
-      messageId?: string | undefined;
     }, callback?: (err: Error) => void): Analytics;
 
     /* The screen method lets you record whenever a user sees a screen,
        the mobile equivalent of page, in your mobile app, along with
        any properties about the screen. */
-    screen(message: Identity & {
+    screen(message: Message & {
       name?: string | undefined;
       properties?: any;
       timestamp?: Date | undefined;
@@ -94,14 +93,14 @@ declare namespace AnalyticsNode {
     }, callback?: (err: Error) => void): Analytics;
 
     /* alias is how you associate one identity with another. */
-    alias(message: Identity & {
+    alias(message: Message & {
       previousId: string | number;
       integrations?: Integrations | undefined;
     }, callback?: (err: Error) => void): Analytics;
 
     /* Group calls can be used to associate individual users with shared
        accounts or companies. */
-    group(message: Identity & {
+    group(message: Message & {
       groupId: string | number;
       traits?: any;
       context?: any;
